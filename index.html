@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimoire Gauntlet</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Dynamic Arena Background -->
+  <div id="arenaBackground"></div>
+
+  <!-- Main Menu -->
+  <div id="mainMenu" class="screen">
+    <h1 class="title">GRIMOIRE GAUNTLET</h1>
+    <div class="menu-buttons">
+      <button id="fightBtn">⚔️ NEW GAME</button>
+      <button id="loadBtn">📂 CONTINUE</button>
+      <button id="howToPlayBtn">❓ HOW TO PLAY</button>
+    </div>
+    <div class="audio-controls">
+      <button id="audioToggle">🔊</button>
+      <span>Music</span>
+      <button id="sfxToggle">🔊</button>
+      <span>SFX</span>
+    </div>
+    <audio id="mainTheme" loop>
+      <source src="sounds/main_theme.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="gameScreen" class="screen" style="display:none">
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="playerUI">
+      <div id="playerHealth">HP: 3 / 3</div>
+      <div id="playerXP">XP: 0 / 10 | Level: 1</div>
+      <div id="zoneName">Zone: Forest of Beginnings</div>
+      <div id="skillPoints">Skill Points: 0</div>
+    </div>
+    <div id="waveMessage" style="display:none">Wave Complete!</div>
+    <div id="spellHotkeys"></div>
+    <div id="battleLog"></div>
+    <button id="pauseBtn">⏸</button>
+  </div>
+
+  <!-- Skill Tree Modal -->
+  <div id="skillTreeModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <h2>Unlock New Power</h2>
+      <div id="spellOptions" class="spell-grid"></div>
+      <button id="closeSkillTree">Close</button>
+    </div>
+  </div>
+
+  <!-- How to Play Modal -->
+  <div id="howToPlayModal" class="modal" style="display:none">
+    <div class="modal-content">
+      <h2>How to Play</h2>
+      <div class="instructions">
+        <p>🖱️ Move: Click where you want to go</p>
+        <p>🎯 Target: Right-click to switch targets</p>
+        <p>1-5: Cast spells</p>
+        <p>Defeat enemies to gain XP and level up!</p>
+      </div>
+      <button id="closeHowToPlay">Got it!</button>
+    </div>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>

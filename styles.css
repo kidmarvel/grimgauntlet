@@ -1,0 +1,322 @@
+/* Base Styles */
+:root {
+  --primary: #6a5acd;
+  --primary-light: #7a6ae3;
+  --text: white;
+  --bg-dark: #0f0c29;
+  --bg-darker: #070518;
+  --accent: #cc66ff;
+  --danger: #ff4422;
+  --heal: #aaffaa;
+}
+
+body {
+  margin: 0;
+  font-family: 'MedievalSharp', cursive;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+  color: var(--text);
+}
+
+/* Screen Layout */
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+#arenaBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: background-image 1s ease;
+}
+
+/* Menu Styles */
+.title {
+  font-size: 4rem;
+  text-shadow: 0 0 15px var(--accent);
+  margin-bottom: 2rem;
+  animation: fadeIn 2s ease-in-out;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-buttons button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--text);
+  box-shadow: 0 0 10px var(--accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-buttons button:hover {
+  transform: scale(1.05);
+  background: var(--primary-light);
+}
+
+.audio-controls {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.audio-controls button {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Game Canvas */
+#gameCanvas {
+  background: var(--bg-darker);
+  display: block;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Player UI */
+#playerUI {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#playerHealth {
+  color: var(--danger);
+}
+
+#skillPoints {
+  color: var(--accent);
+}
+
+#waveMessage {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 2rem;
+  color: #ffcc00;
+  text-shadow: 0 0 10px #000;
+  animation: pulse 1.5s infinite;
+}
+
+/* Spell Hotkeys */
+#spellHotkeys {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.spell-slot {
+  width: 70px;
+  height: 70px;
+  background: rgba(30, 30, 60, 0.8);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spell-slot:hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+
+.spell-slot .key {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.spell-slot .name {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.cooldown-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  pointer-events: none;
+  animation: cooldownAnim linear forwards;
+}
+
+/* Battle Log */
+#battleLog {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-height: 100px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+#battleLog div {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Modals */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.modal-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid var(--accent);
+  color: white;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.spell-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.spell-option {
+  padding: 15px;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spell-option:hover {
+  background: rgba(106, 90, 205, 0.2);
+  border-color: var(--accent);
+}
+
+.spell-option h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cooldownAnim {
+  from { height: 100%; }
+  to { height: 0%; }
+}
+
+@keyframes pulse {
+  0% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.05); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+/* Pause Button */
+#pauseBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid white;
+  color: white;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .menu-buttons button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
+  
+  #spellHotkeys {
+    gap: 8px;
+    bottom: 10px;
+  }
+  
+  .spell-slot {
+    width: 50px;
+    height: 50px;
+    font-size: 0.8rem;
+  }
+}
