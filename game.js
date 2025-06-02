@@ -14,17 +14,17 @@ const game = {
   zones: [
     { 
       name: "Forest of Beginnings", 
-      background: "url('assets/backgrounds/forest_bg.jpg')",
+      background: "url('assets/background/forest_bg.jpg')",
       music: "sounds/forest_theme.mp3"
     },
     { 
       name: "Ice Caverns", 
-      background: "url('assets/backgrounds/ice_cave_bg.jpg')",
+      background: "url('assets/background/ice_cave_bg.jpg')",
       music: "sounds/ice_theme.mp3"
     },
     { 
       name: "Volcanic Depths", 
-      background: "url('assets/backgrounds/volcano_bg.jpg')",
+      background: "url('assets/background/volcano_bg.jpg')",
       music: "sounds/lava_theme.mp3"
     }
   ],
