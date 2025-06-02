@@ -59,6 +59,7 @@ const audio = {
     fire: new Audio('sounds/fire_cast.wav'),
     ice: new Audio('sounds/ice_cast.wav'),
     heal: new Audio('sounds/heal_cast.wav'),
+    thunder: new Audio('sounds/thunder_cast.wav'),
     levelUp: new Audio('sounds/level_up.wav'),
     enemyHit: new Audio('sounds/enemy_hit.wav'),
     playerHit: new Audio('sounds/player_hit.wav')
@@ -88,7 +89,7 @@ const player = {
   x: 400,
   y: 500,
   size: 20,
-  color: "#6a5acd",
+  color: "#f6ff00",
   gridSize: 40,
   speed: 5,
   maxHp: 3,
@@ -96,7 +97,7 @@ const player = {
   xp: 0,
   level: 1,
   xpToNext: 10,
-  spellsUnlocked: [0, 1], // Start with first two spells
+  spellsUnlocked: [0, 1, 2, 3], // Start with first two spells
   skillPoints: 0,
   damageBonus: 0,
   lastDamaged: 0,
@@ -168,7 +169,7 @@ const allSpells = [
     baseDamage: 2, 
     description: "Powerful arcane energy",
     unlockLevel: 3,
-    sfx: "fire", // Temporary
+    sfx: "thunder", // Temporary
     cast: function() {
       const target = enemies[currentTarget];
       if (!target) return;
@@ -258,7 +259,7 @@ function drawParticles() {
 const enemyTypes = {
   goblin: {
     name: "Goblin",
-    color: "#4CAF50",
+    color: "#00fc08",
     speed: 1.2,
     health: 3,
     attack: 1,
@@ -268,7 +269,7 @@ const enemyTypes = {
   },
   brute: {
     name: "Goblin Brute",
-    color: "#2E7D32",
+    color: "#000087",
     speed: 0.8,
     health: 6,
     attack: 2,
@@ -278,7 +279,7 @@ const enemyTypes = {
   },
   archer: {
     name: "Goblin Archer",
-    color: "#1B5E20",
+    color: "#fc3b00",
     speed: 1.5,
     health: 2,
     attack: 1,
@@ -287,11 +288,11 @@ const enemyTypes = {
     behavior: "ranged",
     attackRange: 200,
     projectileSpeed: 5,
-    attackCooldown: 90
+    attackCooldown: 100
   },
   shaman: {
     name: "Goblin Shaman",
-    color: "#6A1B9A",
+    color: "#00bbff",
     speed: 1.0,
     health: 4,
     attack: 1,
@@ -311,7 +312,10 @@ const enemyTypes = {
     attack: 3,
     xp: 20,
     size: 40,
-    behavior: "melee",
+    behavior: "ranged",
+    attackRange: 500,
+    projectileSpeed: 1,
+    attackCooldown: 1500,
     special: "summon"
   }
 };
